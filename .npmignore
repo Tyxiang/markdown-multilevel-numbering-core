@@ -1,0 +1,29 @@
+# Source code
+src/
+
+# Tests
+tests/
+
+# Documentation
+doc/
+
+# Config files
+tsconfig.json
+vitest.config.ts
+
+# Git
+.gitignore
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*

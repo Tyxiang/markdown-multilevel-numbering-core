@@ -221,29 +221,19 @@
 - 遍历元素：提取指令，增加编号（update）/ 删除编号（remove）。
 - 将 AST 转换回 markdown。
 
-## 5. 安装方法
+## 5. 安装
 
 ```bash
-npm install @mmn/core
+npm install markdown-multilevel-numbering
 ```
 
 或使用 pnpm：
 
 ```bash
-pnpm add @mmn/core
+pnpm add markdown-multilevel-numbering
 ```
 
-支持 ESM 和 CommonJS：
-
-```typescript
-// ESM
-import { updateText } from '@mmn/core'
-
-// CommonJS
-const { updateText } = require('@mmn/core')
-```
-
-## 6. 使用方法
+## 6. 使用
 
 ```typescript
 import {
@@ -251,7 +241,7 @@ import {
   removeText,
   updateFile,
   removeFile,
-} from "@mmn/core";
+} from "markdown-multilevel-numbering";
 
 // 处理文本
 const numbered = updateText(markdownContent);

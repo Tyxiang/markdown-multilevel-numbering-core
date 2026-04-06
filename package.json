@@ -1,6 +1,6 @@
 {
-  "name": "@mmn/core",
-  "version": "0.1.5",
+  "name": "markdown-multilevel-numbering",
+  "version": "1.0.0",
   "description": "Core library for markdown multilevel numbering",
   "type": "module",
   "main": "dist/index.js",
@@ -12,18 +12,31 @@
       "require": "./dist/index.js"
     }
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
     "test": "vitest",
-    "test:run": "vitest run"
+    "test:run": "vitest run",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "markdown",
     "numbering",
     "parser"
   ],
+  "author": "Tyxiang",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Tyxiang/markdown-multilevel-numbering-core.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Tyxiang/markdown-multilevel-numbering-core/issues"
+  },
+  "homepage": "https://github.com/Tyxiang/markdown-multilevel-numbering-core#readme",
   "dependencies": {
     "mdast-util-frontmatter": "^2.0.1",
     "mdast-util-to-markdown": "^2.1.2",

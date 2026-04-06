@@ -1,4 +1,4 @@
-# Markdown Multilevel Numbering (mmn) Core
+# Markdown Multilevel Numbering (mmn) 
 
 这是一个给 markdown 文档添加多级编号的工具，支持正文/附录两种编号模式，可通过指令灵活控制编号模式、深度。
 
@@ -223,11 +223,13 @@
 
 ## 5. 安装
 
+使用 npm
+
 ```bash
 npm install markdown-multilevel-numbering
 ```
 
-或使用 pnpm：
+使用 pnpm
 
 ```bash
 pnpm add markdown-multilevel-numbering

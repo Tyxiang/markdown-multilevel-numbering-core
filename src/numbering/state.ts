@@ -7,7 +7,7 @@ export function createInitialState(): NumberingState {
     mode: 'mainbody',
     scope: 'heading',
     depth: 6,
-    active: true,
+    active: false,
     counters: Array.from({ length: MAX_DEPTH }, () => 0),
   }
 }

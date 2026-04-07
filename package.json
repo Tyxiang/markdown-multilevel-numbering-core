@@ -13,7 +13,8 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "README_CN.md"
   ],
   "scripts": {
     "build": "tsc",

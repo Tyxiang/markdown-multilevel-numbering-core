@@ -23,6 +23,34 @@ describe("updateText", () => {
     expect(result).toContain("2. Section Two");
   });
 
+  it("adds numbering by default without directive", () => {
+    const input = `# Title
+
+## Section One
+
+## Section Two
+`;
+    const result = updateText(input);
+
+    expect(result).toContain("1. Section One");
+    expect(result).toContain("2. Section Two");
+  });
+
+  it("stops numbering with end directive", () => {
+    const input = `# Title
+
+## Section One
+
+<!-- mmn: end -->
+
+## Section Two
+`;
+    const result = updateText(input);
+
+    expect(result).toContain("1. Section One");
+    expect(result).not.toContain("2. Section Two");
+  });
+
   it("handles h+p directive for paragraph numbering", () => {
     const input = `# Title
 

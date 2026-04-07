@@ -8,7 +8,7 @@ describe('createInitialState', () => {
     expect(state.mode).toBe('mainbody')
     expect(state.scope).toBe('heading')
     expect(state.depth).toBe(6)
-    expect(state.active).toBe(false)
+    expect(state.active).toBe(true)
     expect(state.counters).toEqual([0, 0, 0, 0, 0])
   })
 })

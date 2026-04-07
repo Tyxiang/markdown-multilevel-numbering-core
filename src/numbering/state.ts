@@ -7,7 +7,7 @@ export function createInitialState(): NumberingState {
     mode: 'mainbody',
     scope: 'heading',
     depth: 6,
-    active: false,
+    active: true, // 默认开始编号
     counters: Array.from({ length: MAX_DEPTH }, () => 0),
   }
 }

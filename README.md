@@ -1,6 +1,6 @@
 # Markdown Multilevel Numbering (mmn)
 
-English | [中文](./README_CN.md)
+[English](./README.md) | [中文](./README_CN.md)
 
 A tool for adding multilevel numbering to markdown documents, supporting both mainbody and appendix numbering modes with flexible control via directives.
 

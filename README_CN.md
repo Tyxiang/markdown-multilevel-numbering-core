@@ -1,6 +1,6 @@
 # Markdown Multilevel Numbering (mmn)
 
-[English](./README.md) | 中文
+[English](./README.md) | [中文](./README_CN.md)
 
 这是一个给 markdown 文档添加多级编号的工具，支持正文/附录两种编号模式，可通过指令灵活控制编号模式、深度。
 

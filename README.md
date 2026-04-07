@@ -1,63 +1,65 @@
 # Markdown Multilevel Numbering (mmn)
 
-这是一个给 markdown 文档添加多级编号的工具，支持正文/附录两种编号模式，可通过指令灵活控制编号模式、深度。
+English | [中文](./README_CN.md)
 
-## 1. 功能特性
+A tool for adding multilevel numbering to markdown documents, supporting both mainbody and appendix numbering modes with flexible control via directives.
 
-- 正文模式标题和段落的编号：`1.`, `1.1.`, `1.1.1.` ...
-- 附录模式标题和段落的编号：`A.`, `A.1.`, `A.1.1.` ...
-- 附录的 H2 标题格式：`附录 A 标题`。
-- 通过控制指令灵活改变编号行为。
-- 一级标题永远不会参与编号。
-- 只处理第一个一级标题逻辑范围内的内容，后续一级标题及其内容将被忽略。
-- 基于 AST 的可靠解析，保护代码块、列表、表格、数学公式等内容不被误改。
+## 1. Features
 
-## 2. 控制指令
+- Mainbody mode numbering for headings and paragraphs: `1.`, `1.1.`, `1.1.1.` ...
+- Appendix mode numbering for headings and paragraphs: `A.`, `A.1.`, `A.1.1.` ...
+- Appendix H2 heading format: `Appendix A Heading`
+- Flexible control of numbering behavior via directives
+- Level 1 headings never participate in numbering
+- Only processes content within the logical scope of the first H1; subsequent H1s and their content are ignored
+- Reliable AST-based parsing that protects code blocks, lists, tables, and math expressions from being accidentally modified
 
-在 markdown 文档中用 HTML 注释方式插入控制指令来控制编号行为。
+## 2. Control Directives
 
-注释格式：`<!-- mmn: command [command...] -->`
+Insert control directives in markdown using HTML comments to control numbering behavior.
 
-| command    | 功能描述                                               |
-| ---------- | ------------------------------------------------------ |
-| `mainbody` | 编号模式指令，以默认值开始正文模式编号，深度默认为 `h` |
-| `appendix` | 编号模式指令，以默认值开始附录模式编号，深度默认为 `h` |
-| `h`        | 编号深度指令，给所有级别标题编号                       |
-| `h+p`      | 编号深度指令，给所有级别标题、段落编号                 |
-| `h2`       | 编号深度指令，给 2 级标题编号                          |
-| `h3`       | 编号深度指令，给 2~3 级标题编号                        |
-| `h4`       | 编号深度指令，给 2~4 级标题编号                        |
-| `h5`       | 编号深度指令，给 2~5 级标题编号                        |
-| `h6`       | 编号深度指令，给 2~6 级标题编号                        |
-| `end`      | 结束编号                                               |
+Comment format: `<!-- mmn: command [command...] -->`
 
-程序启动后，默认以 `mainbody` 模式开始编号。
+| command    | Description                                               |
+| ---------- | --------------------------------------------------------- |
+| `mainbody` | Numbering mode directive, starts mainbody mode with default depth `h` |
+| `appendix` | Numbering mode directive, starts appendix mode with default depth `h` |
+| `h`        | Depth directive, number all heading levels               |
+| `h+p`      | Depth directive, number all heading levels and paragraphs |
+| `h2`       | Depth directive, number level 2 headings only             |
+| `h3`       | Depth directive, number level 2-3 headings                |
+| `h4`       | Depth directive, number level 2-4 headings                |
+| `h5`       | Depth directive, number level 2-5 headings                |
+| `h6`       | Depth directive, number level 2-6 headings                |
+| `end`      | End numbering                                            |
 
-## 3. 编码逻辑示例
+After program starts, it defaults to `mainbody` mode.
 
-详见 `doc/numbering-logic-demo.md`
+## 3. Coding Logic Examples
 
-## 4. 实现思路
+See `doc/numbering-logic-demo.md`
 
-- 将 markdown 解析为 AST。
-- 遍历元素：提取指令，增加编号（update）/ 删除编号（remove）。
-- 将 AST 转换回 markdown。
+## 4. Implementation Approach
 
-## 5. 安装
+- Parse markdown into AST
+- Traverse elements: extract directives, add numbering (update) / remove numbering (remove)
+- Convert AST back to markdown
 
-使用 npm
+## 5. Installation
+
+Using npm:
 
 ```bash
 npm install markdown-multilevel-numbering
 ```
 
-使用 pnpm
+Using pnpm:
 
 ```bash
 pnpm add markdown-multilevel-numbering
 ```
 
-## 6. 使用
+## 6. Usage
 
 ```typescript
 import {
@@ -67,11 +69,11 @@ import {
   removeFile,
 } from "markdown-multilevel-numbering";
 
-// 处理文本
+// Process text
 const numbered = updateText(markdownContent);
 const cleaned = removeText(numberedContent);
 
-// 直接处理文件
+// Process files directly
 await updateFile("./input.md");
 await removeFile("./numbered.md");
 ```
@@ -79,4 +81,3 @@ await removeFile("./numbered.md");
 ## 7. License
 
 MIT
-

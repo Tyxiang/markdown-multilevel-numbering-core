@@ -3,6 +3,7 @@ import { parseMarkdown, serializeMarkdown } from './parser/parse.js'
 import { extractDirectives } from './parser/extract.js'
 import { createInitialState } from './numbering/state.js'
 import { applyNumbering, stripNumbering } from './numbering/apply.js'
+import { ExportError } from './utils/errors.js'
 
 export function updateText(content: string): string {
   const cleanContent = stripNumbering(content)
@@ -15,9 +16,13 @@ export function updateText(content: string): string {
 }
 
 export async function updateFile(filePath: string): Promise<void> {
-  const content = await readFile(filePath, 'utf-8')
-  const result = updateText(content)
-  await writeFile(filePath, result, 'utf-8')
+  try {
+    const content = await readFile(filePath, 'utf-8')
+    const result = updateText(content)
+    await writeFile(filePath, result, 'utf-8')
+  } catch (error) {
+    throw new ExportError(`Failed to update file ${filePath}: ${error instanceof Error ? error.message : String(error)}`)
+  }
 }
 
 export function removeText(content: string): string {
@@ -25,9 +30,13 @@ export function removeText(content: string): string {
 }
 
 export async function removeFile(filePath: string): Promise<void> {
-  const content = await readFile(filePath, 'utf-8')
-  const result = removeText(content)
-  await writeFile(filePath, result, 'utf-8')
+  try {
+    const content = await readFile(filePath, 'utf-8')
+    const result = removeText(content)
+    await writeFile(filePath, result, 'utf-8')
+  } catch (error) {
+    throw new ExportError(`Failed to remove file ${filePath}: ${error instanceof Error ? error.message : String(error)}`)
+  }
 }
 
 export { parseMarkdown, serializeMarkdown } from './parser/parse.js'
@@ -35,5 +44,4 @@ export { extractDirectives } from './parser/extract.js'
 export type { DirectiveWithOffset } from './parser/extract.js'
 export { createInitialState, applyDirective, incrementCounter } from './numbering/state.js'
 export { applyNumbering, stripNumbering } from './numbering/apply.js'
-export type { NumberingState, NumberingMode, NumberingScope, DirectiveType, ParsedDirective } from './numbering/types.js'
 export { ParseError, ExportError, NumberingError } from './utils/errors.js'

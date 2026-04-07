@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { createInitialState, applyDirective, incrementCounter } from '../../src/numbering/state.js'
+import { NumberingError } from '../../src/utils/errors.js'
 
 describe('createInitialState', () => {
   it('creates default state', () => {
@@ -90,5 +91,17 @@ describe('incrementCounter', () => {
     incrementCounter(state, 2)
     const num = incrementCounter(state, 3)
     expect(num).toBe('A.1')
+  })
+
+  it('throws NumberingError for invalid level < 2', () => {
+    const state = createInitialState()
+    expect(() => incrementCounter(state, 1)).toThrow(NumberingError)
+    expect(() => incrementCounter(state, 1)).toThrow('Invalid heading level: 1')
+  })
+
+  it('throws NumberingError for invalid level > 7', () => {
+    const state = createInitialState()
+    expect(() => incrementCounter(state, 8)).toThrow(NumberingError)
+    expect(() => incrementCounter(state, 8)).toThrow('Invalid heading level: 8')
   })
 })

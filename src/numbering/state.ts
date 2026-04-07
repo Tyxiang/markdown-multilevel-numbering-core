@@ -1,4 +1,6 @@
 import type { NumberingState } from './types.js'
+import { NumberingError } from '../utils/errors.js'
+import { MAX_DEPTH } from './types.js'
 
 export function createInitialState(): NumberingState {
   return {
@@ -6,21 +8,23 @@ export function createInitialState(): NumberingState {
     scope: 'heading',
     depth: 6,
     active: true,
-    counters: [0, 0, 0, 0, 0],
+    counters: Array.from({ length: MAX_DEPTH }, () => 0),
   }
 }
 
 export function applyDirective(state: NumberingState, type: string): void {
+  const resetCounters = () => Array.from({ length: MAX_DEPTH }, () => 0)
+  
   switch (type) {
     case 'mainbody':
       state.mode = 'mainbody'
       state.active = true
-      state.counters = [0, 0, 0, 0, 0]
+      state.counters = resetCounters()
       break
     case 'appendix':
       state.mode = 'appendix'
       state.active = true
-      state.counters = [0, 0, 0, 0, 0]
+      state.counters = resetCounters()
       break
     case 'h':
       state.scope = 'heading'
@@ -52,10 +56,13 @@ export function applyDirective(state: NumberingState, type: string): void {
 }
 
 export function incrementCounter(state: NumberingState, level: number): string {
+  if (level < 2 || level > 7) {
+    throw new NumberingError(`Invalid heading level: ${level}. Expected 2-7.`)
+  }
   const idx = level - 2
   state.counters[idx]++
 
-  for (let i = idx + 1; i < 5; i++) {
+  for (let i = idx + 1; i < MAX_DEPTH; i++) {
     state.counters[i] = 0
   }
 

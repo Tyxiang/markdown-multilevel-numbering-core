@@ -1,4 +1,4 @@
-# Markdown Multilevel Numbering (mmn) 
+# Markdown Multilevel Numbering (mmn)
 
 这是一个给 markdown 文档添加多级编号的工具，支持正文/附录两种编号模式，可通过指令灵活控制编号模式、深度。
 
@@ -10,7 +10,7 @@
 - 通过控制指令灵活改变编号行为。
 - 一级标题永远不会参与编号。
 - 只处理第一个一级标题逻辑范围内的内容，后续一级标题及其内容将被忽略。
-- 基于 AST 的可靠解析，保护代码块、列表等内容不被误改。
+- 基于 AST 的可靠解析，保护代码块、列表、表格、数学公式等内容不被误改。
 
 ## 2. 控制指令
 
@@ -257,4 +257,3 @@ await removeFile("./numbered.md");
 ## 7. License
 
 MIT
-

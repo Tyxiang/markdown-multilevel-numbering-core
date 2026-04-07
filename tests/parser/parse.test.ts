@@ -50,6 +50,13 @@ title: unclosed
   })
 })
 
+describe('serializeMarkdown errors', () => {
+  it('throws ExportError on serialization failure', () => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    expect(() => serializeMarkdown({ type: 'root', children: null } as any)).toThrow()
+  })
+})
+
 describe('serializeMarkdown', () => {
   it('serializes back to markdown', () => {
     const ast = parseMarkdown('# Hello')

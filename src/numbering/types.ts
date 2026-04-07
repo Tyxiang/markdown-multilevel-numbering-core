@@ -1,3 +1,5 @@
+export const MAX_DEPTH = 5
+
 export type NumberingMode = 'mainbody' | 'appendix'
 export type NumberingScope = 'heading' | 'heading+paragraph'
 
